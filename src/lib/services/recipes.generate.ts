@@ -38,13 +38,14 @@ export class RecipeGenerationError extends Error {
  * Returns normalized recipe content along with total generation time.
  */
 export async function generateRecipe(command: GenerateRecipeCommand): Promise<GenerateRecipeResult> {
-  const apiKey = import.meta.env.OPENROUTER_API_KEY;
+  const apiKey = import.meta.env.OPENROUTER_API_KEY ?? getProcessEnv("OPENROUTER_API_KEY");
 
   if (!apiKey) {
     throw new RecipeGenerationError("CONFIG_ERROR", "Missing OpenRouter API key", 500);
   }
 
-  const model = import.meta.env.OPENROUTER_MODEL ?? DEFAULT_OPENROUTER_MODEL;
+  const model =
+    import.meta.env.OPENROUTER_MODEL ?? getProcessEnv("OPENROUTER_MODEL") ?? DEFAULT_OPENROUTER_MODEL;
   const startTime = Date.now();
   const ingredientsForPrompt = buildPromptIngredients(command.ingredients, command.include_basics);
   const { systemPrompt, userPrompt } = buildPrompts(ingredientsForPrompt);
@@ -168,4 +169,10 @@ function extractJson(content: string): string {
   }
 
   return trimmed.slice(startIndex, endIndex + 1);
+}
+
+function getProcessEnv(key: string): string | undefined {
+  const processEnv = (globalThis as { process?: { env?: Record<string, string | undefined> } }).process?.env;
+
+  return processEnv?.[key];
 }

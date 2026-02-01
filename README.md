@@ -35,6 +35,8 @@ Szczegóły: `.ai/db-plan.md`.
 - Tailwind 4 + Shadcn/ui
 - Supabase (Postgres + Auth)
 - Openrouter.ai (modele AI)
+- Testy jednostkowe: Vitest
+- Testy E2E: Playwright
 
 Szczegóły: `.ai/tech-stack.md`.
 

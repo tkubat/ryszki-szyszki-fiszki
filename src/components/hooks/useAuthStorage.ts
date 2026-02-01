@@ -1,4 +1,4 @@
-import { useCallback } from "react";
+import { useCallback, useMemo } from "react";
 
 import type { AuthResponseDTO } from "@/types";
 import type { AuthSessionVM } from "@/lib/auth/auth.types";
@@ -15,5 +15,5 @@ export function useAuthStorage(): AuthStorageHook {
   const set = useCallback((dto: AuthResponseDTO) => setSession(dto), []);
   const clear = useCallback(() => clearSession(), []);
 
-  return { get, set, clear };
+  return useMemo(() => ({ get, set, clear }), [get, set, clear]);
 }
