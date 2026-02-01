@@ -2,6 +2,7 @@ import { useCallback, useRef } from "react";
 
 import type { GenerateRecipeCommand, GenerateRecipeResponseDTO } from "@/types";
 import type { GenerateRecipeErrorVM } from "@/components/generate/types";
+import { getAccessToken } from "@/lib/auth/auth.storage";
 
 const REQUEST_TIMEOUT_MS = 65_000;
 
@@ -92,14 +93,6 @@ export function useGenerateRecipe() {
   }, []);
 
   return { generate };
-}
-
-function getAccessToken(): string | null {
-  if (typeof window === "undefined") {
-    return null;
-  }
-
-  return window.localStorage.getItem("access_token");
 }
 
 async function readJsonPayload(response: Response): Promise<unknown | null> {

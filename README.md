@@ -37,3 +37,12 @@ Szczegóły: `.ai/db-plan.md`.
 - Openrouter.ai (modele AI)
 
 Szczegóły: `.ai/tech-stack.md`.
+
+## Konfiguracja środowiska
+
+Utwórz lokalny plik `.env` w katalogu głównym i ustaw zmienne:
+
+- `SUPABASE_URL`
+- `SUPABASE_KEY`
+- `OPENROUTER_API_KEY`
+- `OPENROUTER_MODEL` (opcjonalnie, domyślnie `openai/gpt-3.5-turbo`)

@@ -1,4 +1,4 @@
-import { createContext, useCallback, useEffect, useMemo, useState, type ReactNode } from "react";
+import { createContext, useCallback, useEffect, useMemo, useRef, useState, type ReactNode } from "react";
 
 import type { AuthResponseDTO, RecipesListResponseDTO } from "@/types";
 import { apiFetch, ApiRequestError, ApiUnauthorizedError } from "@/lib/api/client";
@@ -41,6 +41,7 @@ export default function SessionProvider({
     bootError: null,
     isBooting: false,
   });
+  const isBootingRef = useRef(false);
 
   const clearSession = useCallback(
     (reason?: UnauthReason) => {
@@ -79,10 +80,11 @@ export default function SessionProvider({
   );
 
   const boot = useCallback(async () => {
-    if (state.isBooting) {
+    if (isBootingRef.current) {
       return;
     }
 
+    isBootingRef.current = true;
     setState((prev) => ({
       ...prev,
       status: "unknown",
@@ -90,13 +92,19 @@ export default function SessionProvider({
       isBooting: true,
     }));
 
+    const stopBooting = () => {
+      isBootingRef.current = false;
+    };
+
     const { value: stored, reason } = loadStoredSession();
     if (!stored?.session?.access_token) {
+      stopBooting();
       clearSession(reason ?? "no_tokens");
       return;
     }
 
     if (bootStrategy === "token-only") {
+      stopBooting();
       setState({
         status: "authenticated",
         user: stored.user,
@@ -130,6 +138,7 @@ export default function SessionProvider({
       onAuthenticated?.();
     } catch (error) {
       if (error instanceof ApiUnauthorizedError) {
+        stopBooting();
         clearSession("unauthorized_401");
         return;
       }
@@ -144,8 +153,10 @@ export default function SessionProvider({
         },
         isBooting: false,
       }));
+    } finally {
+      stopBooting();
     }
-  }, [bootStrategy, clearSession, onAuthenticated, state.isBooting]);
+  }, [bootStrategy, clearSession, onAuthenticated]);
 
   const logout = useCallback(async () => {
     if (!state.session?.access_token) {
