@@ -11,10 +11,13 @@ export default function AuthView() {
   const [globalError, setGlobalError] = useState<AuthErrorVM | null>(null);
   const { actions } = useSession();
 
-  const handleAuthSuccess = useCallback((dto: AuthResponseDTO) => {
-    setGlobalError(null);
-    actions.setSession(dto);
-  }, [actions]);
+  const handleAuthSuccess = useCallback(
+    (dto: AuthResponseDTO) => {
+      setGlobalError(null);
+      actions.setSession(dto);
+    },
+    [actions]
+  );
 
   const handleAuthError = useCallback((error: AuthErrorVM) => {
     if (error.kind === "network" || error.kind === "server" || error.kind === "unknown") {

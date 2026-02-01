@@ -58,26 +58,21 @@ export function RecipesTab({ onNavigateToGenerate, onUnauthorized }: RecipesTabP
     setRecipes,
   });
 
-  const recipeViewModels = useMemo(
-    () => recipes.map(toRecipeCardViewModel),
-    [recipes],
-  );
+  const recipeViewModels = useMemo(() => recipes.map(toRecipeCardViewModel), [recipes]);
 
   const handleToggleLiked = useCallback(
     (recipeId: string, nextLiked: boolean) => {
       clearError();
       void toggle(recipeId, nextLiked);
     },
-    [clearError, toggle],
+    [clearError, toggle]
   );
 
   return (
     <section className="space-y-6">
       <header className="space-y-2">
         <h2 className="text-2xl font-semibold">Moje przepisy</h2>
-        <p className="text-sm text-muted-foreground">
-          Twoje zapisane przepisy od najnowszych.
-        </p>
+        <p className="text-sm text-muted-foreground">Twoje zapisane przepisy od najnowszych.</p>
       </header>
 
       <RecipesList

@@ -43,13 +43,7 @@ export default function AuthGate({
 
   if (state.status === "unknown") {
     return (
-      bootFallback ?? (
-        <SessionBootScreen
-          error={state.bootError}
-          onRetry={actions.boot}
-          isRetrying={state.isBooting}
-        />
-      )
+      bootFallback ?? <SessionBootScreen error={state.bootError} onRetry={actions.boot} isRetrying={state.isBooting} />
     );
   }
 

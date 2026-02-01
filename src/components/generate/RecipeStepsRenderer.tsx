@@ -45,7 +45,7 @@ function buildStepList(steps: string): string[] {
   }
 
   const numbered = steps
-    .split(/\s*\d+[\).:-]\s+/)
+    .split(/\s*\d+[).:-]\s+/)
     .map((part) => part.trim())
     .filter(Boolean);
 
@@ -57,5 +57,5 @@ function buildStepList(steps: string): string[] {
 }
 
 function stripNumbering(line: string): string {
-  return line.replace(/^\d+[\).:-]\s*/, "");
+  return line.replace(/^\d+[).:-]\s*/, "");
 }

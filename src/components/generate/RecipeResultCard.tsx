@@ -15,9 +15,7 @@ export function RecipeResultCard({ recipe, generationTimeMs, onGenerateAnother }
       <CardHeader>
         <CardTitle>{recipe.title}</CardTitle>
         {typeof generationTimeMs === "number" ? (
-          <p className="text-sm text-muted-foreground">
-            Czas generowania: {(generationTimeMs / 1000).toFixed(1)} s
-          </p>
+          <p className="text-sm text-muted-foreground">Czas generowania: {(generationTimeMs / 1000).toFixed(1)} s</p>
         ) : null}
       </CardHeader>
       <CardContent>

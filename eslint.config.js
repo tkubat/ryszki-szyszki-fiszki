@@ -20,6 +20,7 @@ const baseConfig = tseslint.config({
   rules: {
     "no-console": "warn",
     "no-unused-vars": "off",
+    "@typescript-eslint/no-empty-object-type": "off",
   },
 });
 
@@ -58,6 +59,7 @@ const reactConfig = tseslint.config({
 
 export default tseslint.config(
   includeIgnoreFile(gitignorePath),
+  { ignores: ["src/db/database.types.ts"] },
   baseConfig,
   jsxA11yConfig,
   reactConfig,

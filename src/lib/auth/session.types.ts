@@ -2,12 +2,7 @@ import type { AuthResponseDTO, AuthSessionDTO, AuthUserDTO } from "@/types";
 
 export type SessionStatus = "unknown" | "authenticated" | "unauthenticated";
 
-export type UnauthReason =
-  | "no_tokens"
-  | "invalid_tokens"
-  | "expired"
-  | "unauthorized_401"
-  | "boot_network_error";
+export type UnauthReason = "no_tokens" | "invalid_tokens" | "expired" | "unauthorized_401" | "boot_network_error";
 
 export interface SessionBootError {
   message: string;
@@ -31,4 +26,3 @@ export interface SessionActionsVM {
 }
 
 export type AuthGateMode = "require-auth" | "require-unauth";
-

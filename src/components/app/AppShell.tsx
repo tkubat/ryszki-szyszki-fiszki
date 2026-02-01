@@ -76,9 +76,7 @@ export default function AppShell({ defaultTab = "generate", authRedirectPath = "
 
   if (authStatus === "unknown") {
     return (
-      <div className="rounded-md border border-border/60 bg-card p-6 text-sm text-muted-foreground">
-        Ładowanie...
-      </div>
+      <div className="rounded-md border border-border/60 bg-card p-6 text-sm text-muted-foreground">Ładowanie...</div>
     );
   }
 

@@ -21,10 +21,7 @@ export function LikeToggleButton({ liked, isPending = false, onToggle }: LikeTog
       disabled={isPending}
     >
       <ThumbsUp
-        className={cn(
-          "size-4 transition-colors",
-          liked ? "fill-primary text-primary" : "text-muted-foreground",
-        )}
+        className={cn("size-4 transition-colors", liked ? "fill-primary text-primary" : "text-muted-foreground")}
       />
     </Button>
   );

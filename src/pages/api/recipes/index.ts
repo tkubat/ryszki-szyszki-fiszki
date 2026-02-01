@@ -1,12 +1,7 @@
 import type { APIRoute } from "astro";
 import { z } from "zod";
 
-import type {
-  CreateRecipeCommand,
-  GetRecipesQuery,
-  RecipeDTO,
-  RecipesListResponseDTO,
-} from "../../../types";
+import type { CreateRecipeCommand, GetRecipesQuery, RecipeDTO, RecipesListResponseDTO } from "../../../types";
 import { createRecipe, getRecipes } from "../../../lib/services/recipes.service";
 
 export const prerender = false;
@@ -34,7 +29,7 @@ const querySchema = z.object({
         })
         .int("Limit must be an integer")
         .min(1, "Limit must be at least 1")
-        .max(MAX_LIMIT, `Limit must be at most ${MAX_LIMIT}`),
+        .max(MAX_LIMIT, `Limit must be at most ${MAX_LIMIT}`)
     )
     .default(DEFAULT_LIMIT),
   cursor: z
@@ -51,7 +46,7 @@ const querySchema = z.object({
           invalid_type_error: "Cursor must be a string",
         })
         .datetime({ offset: true, message: "Cursor must be a valid ISO8601 timestamp" })
-        .optional(),
+        .optional()
     )
     .optional(),
   liked: z.preprocess(
@@ -70,9 +65,11 @@ const querySchema = z.object({
 
       return value;
     },
-    z.boolean({
-      invalid_type_error: "Liked must be a boolean",
-    }).optional(),
+    z
+      .boolean({
+        invalid_type_error: "Liked must be a boolean",
+      })
+      .optional()
   ),
 });
 
@@ -171,12 +168,7 @@ export const POST: APIRoute = async ({ locals, request }) => {
   }
 };
 
-function jsonError(
-  status: number,
-  code: string,
-  message: string,
-  details?: Record<string, unknown>,
-): Response {
+function jsonError(status: number, code: string, message: string, details?: Record<string, unknown>): Response {
   return new Response(
     JSON.stringify({
       error: {
@@ -188,6 +180,6 @@ function jsonError(
     {
       status,
       headers: { "Content-Type": "application/json" },
-    },
+    }
   );
 }

@@ -65,11 +65,7 @@ export function RecipesList({
       <ul className="space-y-4">
         {recipes.map((recipe) => (
           <li key={recipe.id}>
-            <RecipeCard
-              recipe={recipe}
-              isPending={pendingIds.has(recipe.id)}
-              onToggleLiked={onToggleLiked}
-            />
+            <RecipeCard recipe={recipe} isPending={pendingIds.has(recipe.id)} onToggleLiked={onToggleLiked} />
           </li>
         ))}
       </ul>

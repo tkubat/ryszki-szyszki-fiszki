@@ -31,9 +31,7 @@ describe("GET /api/recipes", () => {
       next_cursor: null,
     });
 
-    const request = new Request(
-      "http://localhost/api/recipes?limit=5&cursor=2026-02-01T12:00:00.000Z&liked=true",
-    );
+    const request = new Request("http://localhost/api/recipes?limit=5&cursor=2026-02-01T12:00:00.000Z&liked=true");
     const response = await GET({ locals, request } as never);
     const payload = await response.json();
 

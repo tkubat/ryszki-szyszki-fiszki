@@ -16,7 +16,10 @@ export default function AppHeader({ user, logoutState, onLogout }: AppHeaderProp
         <h1 className="text-2xl font-semibold text-foreground">Twoje przepisy</h1>
       </div>
       <div className="flex flex-wrap items-center gap-3">
-        <div className="rounded-full bg-muted px-3 py-1 text-xs font-medium text-muted-foreground" aria-label={`Zalogowany jako ${user.email}`}>
+        <div
+          className="rounded-full bg-muted px-3 py-1 text-xs font-medium text-muted-foreground"
+          aria-label={`Zalogowany jako ${user.email}`}
+        >
           {user.emailShort}
         </div>
         <Button onClick={onLogout} disabled={logoutState === "loading"}>

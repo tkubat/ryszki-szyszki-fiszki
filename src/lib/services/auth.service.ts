@@ -6,12 +6,7 @@ export class AuthServiceError extends Error {
   code: string;
   details?: Record<string, unknown>;
 
-  constructor(
-    status: number,
-    code: string,
-    message: string,
-    details?: Record<string, unknown>,
-  ) {
+  constructor(status: number, code: string, message: string, details?: Record<string, unknown>) {
     super(message);
     this.status = status;
     this.code = code;
@@ -27,10 +22,7 @@ export class AuthServiceError extends Error {
  * @returns AuthResponseDTO with user info and session tokens
  * @throws AuthServiceError if signup fails or response is incomplete
  */
-export async function signup(
-  supabase: SupabaseClient,
-  command: SignupCommand,
-): Promise<AuthResponseDTO> {
+export async function signup(supabase: SupabaseClient, command: SignupCommand): Promise<AuthResponseDTO> {
   const { data, error } = await supabase.auth.signUp({
     email: command.email,
     password: command.password,
@@ -41,28 +33,17 @@ export async function signup(
       throw new AuthServiceError(409, "CONFLICT", "Email already exists");
     }
 
-    throw new AuthServiceError(
-      500,
-      "INTERNAL_SERVER_ERROR",
-      `Failed to sign up: ${error.message}`,
-      { reason: error.message },
-    );
+    throw new AuthServiceError(500, "INTERNAL_SERVER_ERROR", `Failed to sign up: ${error.message}`, {
+      reason: error.message,
+    });
   }
 
   if (!data.user || !data.session) {
-    throw new AuthServiceError(
-      500,
-      "INTERNAL_SERVER_ERROR",
-      "Failed to create signup session",
-    );
+    throw new AuthServiceError(500, "INTERNAL_SERVER_ERROR", "Failed to create signup session");
   }
 
   if (!data.user.email) {
-    throw new AuthServiceError(
-      500,
-      "INTERNAL_SERVER_ERROR",
-      "Failed to build auth response",
-    );
+    throw new AuthServiceError(500, "INTERNAL_SERVER_ERROR", "Failed to build auth response");
   }
 
   return {

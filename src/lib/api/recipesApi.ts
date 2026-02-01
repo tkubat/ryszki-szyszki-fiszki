@@ -5,10 +5,7 @@ import { apiFetch, type ApiContext } from "./apiClient";
 const RECIPES_PAGE_LIMIT = 100;
 const MAX_PAGES = 50;
 
-export async function fetchRecipesPage(
-  query: GetRecipesQuery,
-  context: ApiContext,
-): Promise<RecipesListResponseDTO> {
+export async function fetchRecipesPage(query: GetRecipesQuery, context: ApiContext): Promise<RecipesListResponseDTO> {
   const params = new URLSearchParams();
 
   if (query.limit) {
@@ -33,10 +30,7 @@ export async function fetchAllRecipes(context: ApiContext): Promise<RecipeDTO[]>
   let cursor: RecipeCreatedAt | null = null;
 
   for (let page = 0; page < MAX_PAGES; page += 1) {
-    const response = await fetchRecipesPage(
-      { limit: RECIPES_PAGE_LIMIT, cursor: cursor ?? undefined },
-      context,
-    );
+    const response = await fetchRecipesPage({ limit: RECIPES_PAGE_LIMIT, cursor: cursor ?? undefined }, context);
 
     recipes.push(...response.data);
 
@@ -50,14 +44,6 @@ export async function fetchAllRecipes(context: ApiContext): Promise<RecipeDTO[]>
   return recipes;
 }
 
-export async function patchRecipeLiked(
-  recipeId: string,
-  liked: boolean,
-  context: ApiContext,
-): Promise<RecipeDTO> {
-  return apiFetch<RecipeDTO>(
-    `/api/recipes/${recipeId}`,
-    { method: "PATCH", body: { liked } },
-    context,
-  );
+export async function patchRecipeLiked(recipeId: string, liked: boolean, context: ApiContext): Promise<RecipeDTO> {
+  return apiFetch<RecipeDTO>(`/api/recipes/${recipeId}`, { method: "PATCH", body: { liked } }, context);
 }

@@ -1,10 +1,5 @@
 import type { SupabaseClient } from "../../db/supabase.client";
-import type {
-  CreateRecipeCommand,
-  GetRecipesQuery,
-  RecipeDTO,
-  RecipesListResponseDTO,
-} from "../../types";
+import type { CreateRecipeCommand, GetRecipesQuery, RecipeDTO, RecipesListResponseDTO } from "../../types";
 
 const DEFAULT_LIMIT = 20;
 
@@ -20,7 +15,7 @@ const DEFAULT_LIMIT = 20;
 export async function getRecipes(
   supabase: SupabaseClient,
   userId: string,
-  query: GetRecipesQuery,
+  query: GetRecipesQuery
 ): Promise<RecipesListResponseDTO> {
   const limit = query.limit ?? DEFAULT_LIMIT;
 
@@ -46,8 +41,7 @@ export async function getRecipes(
   }
 
   const recipes = (data ?? []) as RecipeDTO[];
-  const next_cursor =
-    recipes.length === limit ? recipes[recipes.length - 1]?.created_at ?? null : null;
+  const next_cursor = recipes.length === limit ? (recipes[recipes.length - 1]?.created_at ?? null) : null;
 
   return { data: recipes, next_cursor };
 }
@@ -64,7 +58,7 @@ export async function getRecipes(
 export async function createRecipe(
   supabase: SupabaseClient,
   userId: string,
-  command: CreateRecipeCommand,
+  command: CreateRecipeCommand
 ): Promise<RecipeDTO> {
   const { data, error } = await supabase
     .from("recipes")
@@ -99,7 +93,7 @@ export async function updateRecipeLiked(
   supabase: SupabaseClient,
   userId: string,
   recipeId: string,
-  liked: boolean,
+  liked: boolean
 ): Promise<RecipeDTO | null> {
   const { data, error } = await supabase
     .from("recipes")

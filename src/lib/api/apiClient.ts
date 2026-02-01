@@ -55,7 +55,7 @@ async function readResponseJson<T>(response: Response): Promise<T | undefined> {
 export async function apiFetch<T>(
   input: RequestInfo | URL,
   init: RequestInit | undefined,
-  context: ApiContext,
+  context: ApiContext
 ): Promise<T> {
   if (!context.accessToken) {
     context.onUnauthorized?.();

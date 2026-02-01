@@ -60,12 +60,7 @@ export const PATCH: APIRoute = async ({ locals, params, request }) => {
     const command: UpdateRecipeLikedCommand = parsedBody.data;
     const recipeIdParams: RecipeIdParams = parsedParams.data;
 
-    const updatedRecipe = await updateRecipeLiked(
-      locals.supabase,
-      user.id,
-      recipeIdParams.id,
-      command.liked,
-    );
+    const updatedRecipe = await updateRecipeLiked(locals.supabase, user.id, recipeIdParams.id, command.liked);
 
     if (!updatedRecipe) {
       return jsonError(404, "NOT_FOUND", "Recipe not found");
@@ -86,12 +81,7 @@ export const PATCH: APIRoute = async ({ locals, params, request }) => {
 /**
  * Builds consistent JSON error responses for API routes.
  */
-function jsonError(
-  status: number,
-  code: string,
-  message: string,
-  details?: Record<string, unknown>,
-): Response {
+function jsonError(status: number, code: string, message: string, details?: Record<string, unknown>): Response {
   return new Response(
     JSON.stringify({
       error: {
@@ -103,6 +93,6 @@ function jsonError(
     {
       status,
       headers: { "Content-Type": "application/json" },
-    },
+    }
   );
 }

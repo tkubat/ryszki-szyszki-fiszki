@@ -44,8 +44,7 @@ export async function generateRecipe(command: GenerateRecipeCommand): Promise<Ge
     throw new RecipeGenerationError("CONFIG_ERROR", "Missing OpenRouter API key", 500);
   }
 
-  const model =
-    import.meta.env.OPENROUTER_MODEL ?? getProcessEnv("OPENROUTER_MODEL") ?? DEFAULT_OPENROUTER_MODEL;
+  const model = import.meta.env.OPENROUTER_MODEL ?? getProcessEnv("OPENROUTER_MODEL") ?? DEFAULT_OPENROUTER_MODEL;
   const startTime = Date.now();
   const ingredientsForPrompt = buildPromptIngredients(command.ingredients, command.include_basics);
   const { systemPrompt, userPrompt } = buildPrompts(ingredientsForPrompt);

@@ -36,12 +36,7 @@ export const POST: APIRoute = async ({ locals }) => {
   }
 };
 
-function jsonError(
-  status: number,
-  code: string,
-  message: string,
-  details?: Record<string, unknown>,
-): Response {
+function jsonError(status: number, code: string, message: string, details?: Record<string, unknown>): Response {
   return new Response(
     JSON.stringify({
       error: {
@@ -53,6 +48,6 @@ function jsonError(
     {
       status,
       headers: { "Content-Type": "application/json" },
-    },
+    }
   );
 }

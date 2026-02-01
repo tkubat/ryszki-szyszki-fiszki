@@ -21,10 +21,7 @@ export type UserId = RecipeEntity["user_id"];
 // Recipes DTOs and Commands
 // ============================================================================
 
-export type RecipeDTO = Pick<
-  RecipeEntity,
-  "id" | "title" | "ingredients" | "steps" | "liked" | "created_at"
->;
+export type RecipeDTO = Pick<RecipeEntity, "id" | "title" | "ingredients" | "steps" | "liked" | "created_at">;
 
 export interface RecipesListResponseDTO {
   data: RecipeDTO[];
@@ -41,10 +38,7 @@ export interface GetRecipesQuery {
   liked?: boolean;
 }
 
-export type CreateRecipeCommand = Pick<
-  RecipeEntity,
-  "title" | "ingredients" | "steps"
->;
+export type CreateRecipeCommand = Pick<RecipeEntity, "title" | "ingredients" | "steps">;
 
 export type UpdateRecipeLikedCommand = Pick<RecipeEntity, "liked">;
 

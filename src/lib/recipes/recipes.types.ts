@@ -8,12 +8,7 @@ export interface RecipeCardViewModel {
   createdAtLabel: string;
 }
 
-export type RecipesListErrorKind =
-  | "UNAUTHORIZED"
-  | "NETWORK"
-  | "SERVER"
-  | "BAD_REQUEST"
-  | "UNKNOWN";
+export type RecipesListErrorKind = "UNAUTHORIZED" | "NETWORK" | "SERVER" | "BAD_REQUEST" | "UNKNOWN";
 
 export interface RecipesListErrorViewModel {
   kind: RecipesListErrorKind;
@@ -22,13 +17,7 @@ export interface RecipesListErrorViewModel {
   code?: string;
 }
 
-export type ToggleLikedErrorKind =
-  | "UNAUTHORIZED"
-  | "NOT_FOUND"
-  | "NETWORK"
-  | "SERVER"
-  | "BAD_REQUEST"
-  | "UNKNOWN";
+export type ToggleLikedErrorKind = "UNAUTHORIZED" | "NOT_FOUND" | "NETWORK" | "SERVER" | "BAD_REQUEST" | "UNKNOWN";
 
 export interface ToggleLikedErrorViewModel {
   kind: ToggleLikedErrorKind;

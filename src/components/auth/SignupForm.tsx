@@ -48,8 +48,7 @@ export function SignupForm({ onSuccess, onError }: SignupFormProps) {
 
       const passwordResult = passwordSchema.safeParse(values.password);
       if (!passwordResult.success) {
-        nextErrors.password =
-          passwordResult.error.issues[0]?.message ?? "Hasło musi mieć co najmniej 8 znaków";
+        nextErrors.password = passwordResult.error.issues[0]?.message ?? "Hasło musi mieć co najmniej 8 znaków";
       }
 
       if (Object.keys(nextErrors).length > 0) {
@@ -78,7 +77,7 @@ export function SignupForm({ onSuccess, onError }: SignupFormProps) {
         setIsSubmitting(false);
       }
     },
-    [onError, onSuccess, values.email, values.password],
+    [onError, onSuccess, values.email, values.password]
   );
 
   return (
@@ -169,9 +168,7 @@ function mapIssuesToFieldErrors(details: unknown): FieldErrorsVM {
   }, {});
 }
 
-function extractIssues(
-  details: unknown,
-): Array<{ message: string; path?: Array<string | number> }> | null {
+function extractIssues(details: unknown): { message: string; path?: (string | number)[] }[] | null {
   if (!details || typeof details !== "object") {
     return null;
   }
@@ -181,7 +178,7 @@ function extractIssues(
     return null;
   }
 
-  return issues.filter((issue): issue is { message: string; path?: Array<string | number> } => {
+  return issues.filter((issue): issue is { message: string; path?: (string | number)[] } => {
     return Boolean(issue && typeof issue === "object" && "message" in issue);
   });
 }

@@ -5,7 +5,7 @@ import { generateRecipe } from "../../../lib/services/recipes.generate";
 
 vi.mock("../../../lib/services/recipes.generate", async () => {
   const actual = await vi.importActual<typeof import("../../../lib/services/recipes.generate")>(
-    "../../../lib/services/recipes.generate",
+    "../../../lib/services/recipes.generate"
   );
 
   return {

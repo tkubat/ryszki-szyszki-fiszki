@@ -17,7 +17,7 @@ export function redirectToAuth(path: string = DEFAULT_AUTH_REDIRECT): void {
 }
 
 export class ApiUnauthorizedError extends Error {
-  constructor(message: string = "Unauthorized") {
+  constructor(message = "Unauthorized") {
     super(message);
     this.name = "ApiUnauthorizedError";
   }
@@ -41,10 +41,7 @@ export interface ApiFetchOptions extends RequestInit {
   redirectOnUnauthorized?: boolean;
 }
 
-export async function apiFetch(
-  input: RequestInfo | URL,
-  init: ApiFetchOptions = {},
-): Promise<Response> {
+export async function apiFetch(input: RequestInfo | URL, init: ApiFetchOptions = {}): Promise<Response> {
   const headers = new Headers(init.headers);
   const accessToken = getAccessToken();
 

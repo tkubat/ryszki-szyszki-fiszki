@@ -2,11 +2,7 @@ import { createContext, useCallback, useEffect, useMemo, useRef, useState, type 
 
 import type { AuthResponseDTO, RecipesListResponseDTO } from "@/types";
 import { apiFetch, ApiRequestError, ApiUnauthorizedError } from "@/lib/api/client";
-import {
-  clearStoredSession,
-  loadStoredSession,
-  setStoredSession,
-} from "@/lib/auth/session.storage";
+import { clearStoredSession, loadStoredSession, setStoredSession } from "@/lib/auth/session.storage";
 import type { SessionActionsVM, SessionStateVM, UnauthReason } from "@/lib/auth/session.types";
 
 const NETWORK_ERROR_MESSAGE = "Nie udało się połączyć z serwerem. Spróbuj ponownie.";
@@ -57,7 +53,7 @@ export default function SessionProvider({
         onUnauthenticated?.(reason);
       }
     },
-    [onUnauthenticated],
+    [onUnauthenticated]
   );
 
   const handleUnauthorized = useCallback(() => {
@@ -76,7 +72,7 @@ export default function SessionProvider({
       });
       onAuthenticated?.();
     },
-    [onAuthenticated],
+    [onAuthenticated]
   );
 
   const boot = useCallback(async () => {
@@ -126,7 +122,7 @@ export default function SessionProvider({
         throw new ApiRequestError(500, "UNKNOWN_ERROR", "Request failed");
       }
 
-      void (await response.json() as RecipesListResponseDTO);
+      void ((await response.json()) as RecipesListResponseDTO);
 
       setState({
         status: "authenticated",
@@ -186,7 +182,7 @@ export default function SessionProvider({
       logout,
       handleUnauthorized,
     }),
-    [boot, clearSession, handleUnauthorized, logout, setSession],
+    [boot, clearSession, handleUnauthorized, logout, setSession]
   );
 
   const value = useMemo(
@@ -194,7 +190,7 @@ export default function SessionProvider({
       state,
       actions,
     }),
-    [actions, state],
+    [actions, state]
   );
 
   useEffect(() => {

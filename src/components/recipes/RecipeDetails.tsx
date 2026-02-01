@@ -24,15 +24,11 @@ export function RecipeDetails({ ingredients, steps }: RecipeDetailsProps) {
       </summary>
       <div className="mt-4 space-y-4 text-sm">
         <div>
-          <h4 className="text-xs font-semibold uppercase tracking-wide text-muted-foreground">
-            Składniki
-          </h4>
+          <h4 className="text-xs font-semibold uppercase tracking-wide text-muted-foreground">Składniki</h4>
           <p className="mt-2 whitespace-pre-line">{ingredients}</p>
         </div>
         <div>
-          <h4 className="text-xs font-semibold uppercase tracking-wide text-muted-foreground">
-            Kroki
-          </h4>
+          <h4 className="text-xs font-semibold uppercase tracking-wide text-muted-foreground">Kroki</h4>
           <div className="mt-2">
             {hasList ? (
               <ol className="list-decimal space-y-2 pl-5">

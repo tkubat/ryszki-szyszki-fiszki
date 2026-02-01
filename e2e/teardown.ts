@@ -5,9 +5,7 @@ const serviceRoleKey = process.env.SUPABASE_SERVICE_ROLE_KEY;
 
 const createAdminClient = () => {
   if (!supabaseUrl || !serviceRoleKey) {
-    throw new Error(
-      "Missing SUPABASE_URL or SUPABASE_SERVICE_ROLE_KEY for Playwright teardown.",
-    );
+    throw new Error("Missing SUPABASE_URL or SUPABASE_SERVICE_ROLE_KEY for Playwright teardown.");
   }
 
   return createClient(supabaseUrl, serviceRoleKey, {
@@ -19,10 +17,7 @@ const createAdminClient = () => {
 };
 
 const deleteRecipes = async (supabase: ReturnType<typeof createAdminClient>) => {
-  const { error } = await supabase
-    .from("recipes")
-    .delete()
-    .neq("id", "00000000-0000-0000-0000-000000000000");
+  const { error } = await supabase.from("recipes").delete().neq("id", "00000000-0000-0000-0000-000000000000");
 
   if (error) {
     throw new Error(`Failed to delete recipes: ${error.message}`);
@@ -45,9 +40,7 @@ const deleteAllUsers = async (supabase: ReturnType<typeof createAdminClient>) =>
       break;
     }
 
-    const deleteResults = await Promise.all(
-      users.map((user) => supabase.auth.admin.deleteUser(user.id)),
-    );
+    const deleteResults = await Promise.all(users.map((user) => supabase.auth.admin.deleteUser(user.id)));
 
     const deleteError = deleteResults.find((result) => result.error)?.error;
     if (deleteError) {
@@ -64,9 +57,7 @@ const deleteAllUsers = async (supabase: ReturnType<typeof createAdminClient>) =>
 
 const globalTeardown = async () => {
   if (!supabaseUrl || !serviceRoleKey) {
-    console.warn(
-      "Playwright teardown skipped: missing SUPABASE_URL or SUPABASE_SERVICE_ROLE_KEY.",
-    );
+    console.warn("Playwright teardown skipped: missing SUPABASE_URL or SUPABASE_SERVICE_ROLE_KEY.");
     return;
   }
 

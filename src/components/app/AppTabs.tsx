@@ -12,12 +12,7 @@ interface AppTabsProps {
 
 const TAB_OPTIONS: TabKey[] = ["generate", "recipes"];
 
-export default function AppTabs({
-  activeTab,
-  onTabChange,
-  generateContent,
-  recipesContent,
-}: AppTabsProps) {
+export default function AppTabs({ activeTab, onTabChange, generateContent, recipesContent }: AppTabsProps) {
   return (
     <Tabs
       value={activeTab}

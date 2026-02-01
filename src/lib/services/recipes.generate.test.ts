@@ -67,7 +67,7 @@ describe("generateRecipe", () => {
         title: "Test",
         ingredients: "tomato",
         steps: "Step 1",
-      }),
+      })
     );
     vi.stubGlobal("fetch", fetchMock);
 
@@ -76,18 +76,16 @@ describe("generateRecipe", () => {
       include_basics: true,
     });
 
-    const [_url, init] = fetchMock.mock.calls[0] ?? [];
+    const [, init] = fetchMock.mock.calls[0] ?? [];
     const body = JSON.parse(String(init?.body ?? "{}"));
     const userPrompt = body?.messages?.[1]?.content ?? "";
 
-    expect(userPrompt).toContain(
-      "Ingredients: tomato, onion, salt, black pepper, neutral oil, water",
-    );
+    expect(userPrompt).toContain("Ingredients: tomato, onion, salt, black pepper, neutral oil, water");
   });
 
   it("extracts JSON when response includes extra text", async () => {
     const fetchMock = buildFetchOk(
-      `Here is your recipe:\n{"title":"Soup","ingredients":"water","steps":"Boil"}\nEnjoy!`,
+      `Here is your recipe:\n{"title":"Soup","ingredients":"water","steps":"Boil"}\nEnjoy!`
     );
     vi.stubGlobal("fetch", fetchMock);
 
@@ -106,7 +104,7 @@ describe("generateRecipe", () => {
         title: "",
         ingredients: "salt",
         steps: "Mix",
-      }),
+      })
     );
     vi.stubGlobal("fetch", fetchMock);
 

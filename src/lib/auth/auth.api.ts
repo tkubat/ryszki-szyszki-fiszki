@@ -63,11 +63,7 @@ async function parseJson<T>(response: Response): Promise<T | null> {
   }
 }
 
-function toAuthError(
-  status?: number,
-  body?: ApiErrorResponse | null,
-  overrideKind?: AuthErrorVM["kind"],
-): AuthErrorVM {
+function toAuthError(status?: number, body?: ApiErrorResponse | null, overrideKind?: AuthErrorVM["kind"]): AuthErrorVM {
   if (overrideKind === "network") {
     return {
       kind: "network",

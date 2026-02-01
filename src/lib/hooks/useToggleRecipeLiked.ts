@@ -118,7 +118,7 @@ export function useToggleRecipeLiked({
 
           previousLiked = recipe.liked;
           return { ...recipe, liked: nextLiked };
-        }),
+        })
       );
 
       try {
@@ -127,9 +127,7 @@ export function useToggleRecipeLiked({
           onUnauthorized,
         });
 
-        setRecipes((prev) =>
-          prev.map((recipe) => (recipe.id === recipeId ? updated : recipe)),
-        );
+        setRecipes((prev) => prev.map((recipe) => (recipe.id === recipeId ? updated : recipe)));
       } catch (caught) {
         const mapped = mapToggleError(caught, recipeId);
 
@@ -140,9 +138,7 @@ export function useToggleRecipeLiked({
 
         if (previousLiked !== null) {
           setRecipes((prev) =>
-            prev.map((recipe) =>
-              recipe.id === recipeId ? { ...recipe, liked: previousLiked } : recipe,
-            ),
+            prev.map((recipe) => (recipe.id === recipeId ? { ...recipe, liked: previousLiked } : recipe))
           );
         }
 
@@ -159,7 +155,7 @@ export function useToggleRecipeLiked({
         });
       }
     },
-    [accessToken, onNotFound, onUnauthorized, pendingIds, setRecipes],
+    [accessToken, onNotFound, onUnauthorized, pendingIds, setRecipes]
   );
 
   const clearError = useCallback(() => {
