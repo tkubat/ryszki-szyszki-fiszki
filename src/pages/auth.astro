@@ -1,0 +1,10 @@
+---
+import Layout from "../layouts/Layout.astro";
+import AuthEntry from "../components/entries/AuthEntry";
+---
+
+<Layout title="Auth | Ryszki Szyszki Fiszki">
+  <main class="flex min-h-screen items-center justify-center bg-background px-4 py-12">
+    <AuthEntry client:load />
+  </main>
+</Layout>
