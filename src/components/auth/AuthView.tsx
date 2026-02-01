@@ -26,7 +26,7 @@ export default function AuthView() {
   }, []);
 
   return (
-    <Card className="w-full max-w-md shadow-sm">
+    <Card className="w-full max-w-md shadow-sm" data-testid="auth-view">
       <CardHeader className="space-y-2">
         <CardTitle className="text-2xl">Ryszki Szyszki Fiszki</CardTitle>
         <CardDescription>Zaloguj się, aby zapisywać i polubić przepisy.</CardDescription>

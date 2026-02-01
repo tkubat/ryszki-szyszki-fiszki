@@ -17,6 +17,14 @@ import type { Database } from "../db/database.types";
 export const onRequest = defineMiddleware((context, next) => {
   const supabaseUrl = import.meta.env.SUPABASE_URL;
   const supabaseKey = import.meta.env.SUPABASE_KEY;
+  const isTestMode = import.meta.env.MODE === "test";
+
+  if (!supabaseUrl || !supabaseKey) {
+    if (isTestMode) {
+      return next();
+    }
+    throw new Error("SUPABASE_URL and SUPABASE_KEY must be set.");
+  }
 
   // Create Supabase client with auth headers from the request
   // This allows RLS policies to work correctly by identifying the authenticated user

@@ -82,7 +82,7 @@ export function SignupForm({ onSuccess, onError }: SignupFormProps) {
   );
 
   return (
-    <form className="space-y-4" onSubmit={handleSubmit} noValidate>
+    <form className="space-y-4" onSubmit={handleSubmit} noValidate data-testid="signup-form">
       {errors.form ? (
         <Alert variant="destructive">
           <AlertDescription>{errors.form}</AlertDescription>
@@ -102,6 +102,7 @@ export function SignupForm({ onSuccess, onError }: SignupFormProps) {
           aria-describedby={errors.email ? `${emailId}-error` : undefined}
           disabled={isSubmitting}
           autoComplete="email"
+          data-testid="signup-email"
         />
         {errors.email ? (
           <p id={`${emailId}-error`} className="text-sm text-destructive">
@@ -123,6 +124,7 @@ export function SignupForm({ onSuccess, onError }: SignupFormProps) {
           aria-describedby={errors.password ? `${passwordId}-error` : undefined}
           disabled={isSubmitting}
           autoComplete="new-password"
+          data-testid="signup-password"
         />
         {errors.password ? (
           <p id={`${passwordId}-error`} className="text-sm text-destructive">
@@ -131,7 +133,7 @@ export function SignupForm({ onSuccess, onError }: SignupFormProps) {
         ) : null}
       </div>
 
-      <Button type="submit" className="w-full" disabled={!canSubmit || isSubmitting}>
+      <Button type="submit" className="w-full" disabled={!canSubmit || isSubmitting} data-testid="signup-submit">
         {isSubmitting ? "Rejestracja..." : "Utwórz konto"}
       </Button>
     </form>

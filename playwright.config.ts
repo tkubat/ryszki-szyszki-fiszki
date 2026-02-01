@@ -1,6 +1,10 @@
+import path from "node:path";
+import dotenv from "dotenv";
 import { defineConfig, devices } from "@playwright/test";
 
-const baseURL = process.env.PLAYWRIGHT_BASE_URL ?? "http://localhost:4321";
+dotenv.config({ path: path.resolve(process.cwd(), ".env.test") });
+
+const baseURL = process.env.PLAYWRIGHT_BASE_URL ?? "http://localhost:3003";
 
 export default defineConfig({
   testDir: "e2e",

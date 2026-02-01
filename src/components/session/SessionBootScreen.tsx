@@ -15,7 +15,10 @@ export default function SessionBootScreen({
   isRetrying = false,
 }: SessionBootScreenProps) {
   return (
-    <main className="flex min-h-screen flex-col items-center justify-center gap-4 bg-background px-4 text-center text-foreground">
+    <main
+      className="flex min-h-screen flex-col items-center justify-center gap-4 bg-background px-4 text-center text-foreground"
+      data-testid="session-boot"
+    >
       <div role="status" aria-live="polite" className="space-y-2">
         <div className="mx-auto h-6 w-6 animate-spin rounded-full border-2 border-muted-foreground/30 border-t-foreground" />
         <p className="text-sm text-muted-foreground">{label}</p>
@@ -24,7 +27,13 @@ export default function SessionBootScreen({
         <div className="space-y-3">
           <p className="text-sm text-destructive">{error.message}</p>
           {onRetry ? (
-            <Button type="button" variant="outline" onClick={onRetry} disabled={isRetrying}>
+            <Button
+              type="button"
+              variant="outline"
+              onClick={onRetry}
+              disabled={isRetrying}
+              data-testid="session-boot-retry"
+            >
               {isRetrying ? "Ponawiam..." : "Spróbuj ponownie"}
             </Button>
           ) : null}

@@ -36,9 +36,13 @@ export function AuthTabs({ activeTab, onAuthError, onAuthSuccess }: AuthTabsProp
   return (
     <div className="space-y-4">
       <Tabs value={tab} onValueChange={handleTabChange} className="w-full">
-        <TabsList className="grid w-full grid-cols-2">
-          <TabsTrigger value="login">Logowanie</TabsTrigger>
-          <TabsTrigger value="signup">Rejestracja</TabsTrigger>
+        <TabsList className="grid w-full grid-cols-2" data-testid="auth-tabs">
+          <TabsTrigger value="login" data-testid="auth-tab-login">
+            Logowanie
+          </TabsTrigger>
+          <TabsTrigger value="signup" data-testid="auth-tab-signup">
+            Rejestracja
+          </TabsTrigger>
         </TabsList>
         <TabsContent value="login">
           <LoginForm onSuccess={onAuthSuccess} onError={onAuthError} />

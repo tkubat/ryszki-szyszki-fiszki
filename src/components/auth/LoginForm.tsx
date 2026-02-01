@@ -82,7 +82,7 @@ export function LoginForm({ onSuccess, onError }: LoginFormProps) {
   );
 
   return (
-    <form className="space-y-4" onSubmit={handleSubmit} noValidate>
+    <form className="space-y-4" onSubmit={handleSubmit} noValidate data-testid="login-form">
       {errors.form ? (
         <Alert variant="destructive">
           <AlertDescription>{errors.form}</AlertDescription>
@@ -102,6 +102,7 @@ export function LoginForm({ onSuccess, onError }: LoginFormProps) {
           aria-describedby={errors.email ? `${emailId}-error` : undefined}
           disabled={isSubmitting}
           autoComplete="email"
+          data-testid="login-email"
         />
         {errors.email ? (
           <p id={`${emailId}-error`} className="text-sm text-destructive">
@@ -123,6 +124,7 @@ export function LoginForm({ onSuccess, onError }: LoginFormProps) {
           aria-describedby={errors.password ? `${passwordId}-error` : undefined}
           disabled={isSubmitting}
           autoComplete="current-password"
+          data-testid="login-password"
         />
         {errors.password ? (
           <p id={`${passwordId}-error`} className="text-sm text-destructive">
@@ -131,7 +133,7 @@ export function LoginForm({ onSuccess, onError }: LoginFormProps) {
         ) : null}
       </div>
 
-      <Button type="submit" className="w-full" disabled={!canSubmit || isSubmitting}>
+      <Button type="submit" className="w-full" disabled={!canSubmit || isSubmitting} data-testid="login-submit">
         {isSubmitting ? "Logowanie..." : "Zaloguj"}
       </Button>
     </form>
