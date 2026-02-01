@@ -28,6 +28,7 @@ Students understand the effectiveness of spaced repetition for long-term memoriz
 ### The Solution
 
 Ryszki Szyszki Fiszki allows students to:
+
 - **Paste their notes** (50-2000 characters) and generate up to 10 flashcards instantly using AI
 - **Manually create** unlimited flashcards when needed
 - **Study efficiently** using the SM-2 spaced repetition algorithm
@@ -46,22 +47,26 @@ Ryszki Szyszki Fiszki allows students to:
 ## Tech Stack
 
 ### Frontend
+
 - **[Astro](https://astro.build/)** v5.13.7 - Modern web framework with SSR/SSG capabilities
 - **[React](https://react.dev/)** v19.1.1 - UI library for interactive components
 - **[TypeScript](https://www.typescriptlang.org/)** v5 - Type-safe JavaScript
 - **[Tailwind CSS](https://tailwindcss.com/)** v4.1.13 - Utility-first CSS framework
 
 ### Backend & Services
+
 - **[Supabase](https://supabase.com/)** - PostgreSQL database, authentication, and edge functions
 - **[OpenAI API](https://openai.com/api/)** - GPT-3.5-turbo for flashcard generation
 
 ### Development Tools
+
 - **ESLint** - Code linting and quality assurance
 - **Prettier** - Code formatting
 - **Husky** - Git hooks for pre-commit validation
 - **lint-staged** - Run linters on staged files
 
 ### Algorithms
+
 - **SM-2 (SuperMemo 2)** - Spaced repetition algorithm for optimal learning
 
 ## Getting Started Locally
@@ -113,6 +118,7 @@ docker-compose up --build
 ```
 
 This will:
+
 - Build the Docker image with Node.js and Supabase CLI
 - Start Supabase locally inside the container
 - Start the Astro development server
@@ -235,6 +241,7 @@ This will start Supabase services in Docker containers. Copy the `anon key` and 
 7. **Set up Supabase database**
 
 Run the database migrations to create the required tables:
+
 - `users` - User accounts and AI flashcard limits
 - `flashcards` - Flashcard data with front/back content
 - `study_sessions` - Study session tracking
@@ -255,20 +262,21 @@ The application will be available at `http://localhost:4321`
 
 ## Available Scripts
 
-| Script | Description |
-|--------|-------------|
-| `npm run dev` | Start the development server with hot-reloading |
-| `npm run build` | Build the application for production |
-| `npm run preview` | Preview the production build locally |
-| `npm run lint` | Run ESLint to check for code issues |
-| `npm run lint:fix` | Automatically fix ESLint issues |
-| `npm run format` | Format code using Prettier |
+| Script             | Description                                     |
+| ------------------ | ----------------------------------------------- |
+| `npm run dev`      | Start the development server with hot-reloading |
+| `npm run build`    | Build the application for production            |
+| `npm run preview`  | Preview the production build locally            |
+| `npm run lint`     | Run ESLint to check for code issues             |
+| `npm run lint:fix` | Automatically fix ESLint issues                 |
+| `npm run format`   | Format code using Prettier                      |
 
 ## Project Scope
 
 ### MVP Features (Included)
 
 #### 1. Authentication Module (AUTH)
+
 - User registration with email and password
 - Login and logout functionality
 - Password reset via email
@@ -276,6 +284,7 @@ The application will be available at `http://localhost:4321`
 - No email verification required in MVP
 
 #### 2. AI Flashcard Generation (AI-GEN)
+
 - Text input form (50-2000 characters)
 - Generate 1-10 flashcards per request
 - Monthly limit: 100 AI-generated flashcards per user
@@ -285,12 +294,14 @@ The application will be available at `http://localhost:4321`
 - Quality rating system (thumbs up/down)
 
 #### 3. Manual Flashcard Creation (MANUAL)
+
 - Create unlimited flashcards manually
 - Front: max 100 characters
 - Back: max 500 characters
 - Immediate saving without review screen
 
 #### 4. Flashcard Management (CARDS)
+
 - View all flashcards in a list
 - Edit flashcard content
 - Delete flashcards
@@ -298,6 +309,7 @@ The application will be available at `http://localhost:4321`
 - View next review date
 
 #### 5. Study Sessions (STUDY)
+
 - SM-2 spaced repetition algorithm
 - Three difficulty ratings: Easy, Medium, Hard
 - Progress tracking during session
@@ -306,6 +318,7 @@ The application will be available at `http://localhost:4321`
 - Newly created flashcards immediately available
 
 #### 6. Landing Page (LANDING)
+
 - Product value proposition
 - Feature highlights
 - Login and registration CTAs
@@ -340,6 +353,16 @@ The application will be available at `http://localhost:4321`
 
 This project is currently in active development with an estimated MVP completion timeline of 1 week (developed 100% with AI assistance).
 
+### Implemented Features
+
+#### API Endpoints
+
+- ✅ **GET /api/v1/profile** - Retrieve authenticated user's profile with AI usage information
+  - Returns user profile data with AI flashcard usage tracking
+  - Automatically resets monthly AI limit when needed
+  - Protected by Row Level Security (RLS)
+  - See [Implementation Plan](.ai/get-profile-implementation-plan.md) for details
+
 ### Success Metrics
 
 The MVP will be considered successful after 4 weeks from deployment if:
@@ -353,7 +376,8 @@ The MVP will be considered successful after 4 weeks from deployment if:
 ### Roadmap
 
 - [x] Project setup and tech stack configuration
-- [ ] Supabase database schema and migrations
+- [x] Supabase database schema and migrations
+- [x] GET /api/v1/profile endpoint implementation
 - [ ] User authentication implementation
 - [ ] AI flashcard generation with OpenAI integration
 - [ ] Manual flashcard creation
