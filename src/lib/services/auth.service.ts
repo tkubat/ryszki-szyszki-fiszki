@@ -41,7 +41,12 @@ export async function signup(
       throw new AuthServiceError(409, "CONFLICT", "Email already exists");
     }
 
-    throw new AuthServiceError(500, "INTERNAL_SERVER_ERROR", "Failed to sign up");
+    throw new AuthServiceError(
+      500,
+      "INTERNAL_SERVER_ERROR",
+      `Failed to sign up: ${error.message}`,
+      { reason: error.message },
+    );
   }
 
   if (!data.user || !data.session) {

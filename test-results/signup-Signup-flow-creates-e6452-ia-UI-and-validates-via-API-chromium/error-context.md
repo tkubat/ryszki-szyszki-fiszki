@@ -1,0 +1,52 @@
+# Page snapshot
+
+```yaml
+- generic [active] [ref=e1]:
+  - main [ref=e2]:
+    - generic [ref=e4]:
+      - generic [ref=e5]:
+        - generic [ref=e6]: Ryszki Szyszki Fiszki
+        - generic [ref=e7]: Zaloguj się, aby zapisywać i polubić przepisy.
+      - generic [ref=e8]:
+        - alert [ref=e9]:
+          - generic [ref=e10]:
+            - heading "Coś poszło nie tak" [level=5] [ref=e11]
+            - generic [ref=e12]: Wystąpił nieoczekiwany błąd. Spróbuj ponownie.
+          - button "Zamknij" [ref=e13]
+        - generic [ref=e14]:
+          - generic [ref=e15]:
+            - tablist [ref=e16]:
+              - tab "Logowanie" [ref=e17]
+              - tab "Rejestracja" [selected] [ref=e18]
+            - tabpanel "Rejestracja" [ref=e19]:
+              - generic [ref=e20]:
+                - alert [ref=e21]:
+                  - generic [ref=e22]: Wystąpił nieoczekiwany błąd. Spróbuj ponownie.
+                - generic [ref=e23]:
+                  - text: Email
+                  - textbox "Email" [ref=e24]:
+                    - /placeholder: twoj@email.pl
+                    - text: test+1769949599951@example.com
+                - generic [ref=e25]:
+                  - text: Hasło
+                  - textbox "Hasło" [ref=e26]:
+                    - /placeholder: "********"
+                    - text: password123
+                - button "Utwórz konto" [ref=e27]
+          - generic [ref=e28]:
+            - text: Masz już konto?
+            - button "Zaloguj się" [ref=e29]
+  - generic [ref=e32]:
+    - button "Menu" [ref=e33]:
+      - img [ref=e35]
+      - generic: Menu
+    - button "Inspect" [ref=e39]:
+      - img [ref=e41]
+      - generic: Inspect
+    - button "Audit" [ref=e43]:
+      - img [ref=e45]
+      - generic: Audit
+    - button "Settings" [ref=e48]:
+      - img [ref=e50]
+      - generic: Settings
+```

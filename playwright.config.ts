@@ -8,6 +8,7 @@ const baseURL = process.env.PLAYWRIGHT_BASE_URL ?? "http://localhost:3003";
 
 export default defineConfig({
   testDir: "e2e",
+  globalTeardown: "./e2e/teardown.ts",
   fullyParallel: true,
   reporter: [["list"], ["html", { open: "never" }]],
   use: {
