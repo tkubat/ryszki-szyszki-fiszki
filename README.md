@@ -1,6 +1,6 @@
 # Ryszki Szyszki Fiszki
 
-Prosty webowy generator przepisów z listy składników. Użytkownik wpisuje min. 3 składniki, opcjonalnie dodaje „podstawy kuchenne”, dostaje jeden przepis od AI, a wynik zapisuje się na jego koncie i może zostać polubiony.
+Webowy generator przepisów z listy składników. Użytkownik wpisuje min. 3 składniki, opcjonalnie dodaje „podstawy kuchenne”, dostaje jeden przepis od AI, a wynik zapisuje się na jego koncie i może zostać polubiony.
 
 ## Zakres MVP
 
